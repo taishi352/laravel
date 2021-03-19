@@ -39,6 +39,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'body'  => 'required',
+        ]);
+
         $id = Auth::id();
         //インスタンス作成
         $post = new Post();
@@ -88,6 +92,10 @@ class PostController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'body'  => 'required',
+        ]);
+        
         $id = $request->post_id;
         
         //レコードを検索
