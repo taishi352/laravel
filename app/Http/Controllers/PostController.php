@@ -95,8 +95,12 @@ class PostController extends Controller
         $this->validate($request, [
             'body'  => 'required',
         ]);
-        
+
         $id = $request->post_id;
+
+        if(Auth::id() !== $id){
+            return abort(404);
+        }
         
         //レコードを検索
         $post = Post::findOrFail($id);
@@ -118,6 +122,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = \App\Models\Post::find($id);
+
+        if(Auth::id() !== $post->user_id){
+            return abort(404);
+        }
+
         //削除
         $post->delete();
 

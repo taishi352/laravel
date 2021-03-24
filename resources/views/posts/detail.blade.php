@@ -14,7 +14,9 @@
                     <p class="card-text">{{ $post->body }}</p>
                     <div class="card-footer bg-transparent"><span class="font-weight-bold">by:</span> {{ $user->name }}</div>
                     @auth
+                    @if(Auth::id() == $post->user_id)
                         <a href="{{ url('posts/edit/'.$post->id) }}" class="btn btn-dark">編集する</a>
+                    @endif
                     @endauth
                 </div>
             </div>
