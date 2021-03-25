@@ -9,4 +9,9 @@ class Post extends Model
 {
     use HasFactory;
     protected $table = 'posts';
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
+    }
 }

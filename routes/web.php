@@ -25,3 +25,6 @@ Route::resource('posts', 'PostController', ['only' => ['index', 'show', 'create'
 Route::get('posts/edit/{id}', 'PostController@edit');
 Route::post('posts/edit', 'PostController@update');
 Route::post('posts/delete/{id}', 'PostController@destroy');
+
+Route::post('posts/{post}/favorites', 'FavoriteController@store')->name('favorites');
+Route::post('posts/{post}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');
